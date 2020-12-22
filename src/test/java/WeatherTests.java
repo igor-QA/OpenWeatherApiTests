@@ -10,11 +10,13 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class WeatherTests {
+    //final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class);
     @BeforeAll
     static void setup() {
-
+        Configuration.browser = ConfigHelpers.getRemote();
         Configuration.startMaximized = true;
     }
+
     private static final String LOGIN = ConfigHelpers.getLogin();
     private static final String PWD = ConfigHelpers.getPassword();
 
@@ -30,3 +32,10 @@ public class WeatherTests {
 
     }
 }
+
+
+
+
+
+
+
