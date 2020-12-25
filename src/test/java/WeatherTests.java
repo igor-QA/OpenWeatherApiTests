@@ -1,3 +1,4 @@
+/*
 import com.codeborne.selenide.Configuration;
 import helpers.ConfigHelpers;
 import org.junit.jupiter.api.BeforeAll;
@@ -33,6 +34,8 @@ public class WeatherTests {
     }
 }
 
+
+ */
 
 
 

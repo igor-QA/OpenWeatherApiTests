@@ -1,23 +1,26 @@
-package drivers;
+/*
+package utils;
 
 import com.codeborne.selenide.WebDriverProvider;
-import helpers.WebDriverConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import javax.annotation.Nonnull;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import static org.openqa.selenium.remote.BrowserType.CHROME;
 import static org.openqa.selenium.remote.BrowserType.FIREFOX;
 
 
 public class CustomWebDriver implements WebDriverProvider {
-        final WebDriverConfig config = ConfigFactory.newInstance().create(WebDriverConfig.class);
 
         @Nonnull
         @Override
@@ -36,20 +39,37 @@ public class CustomWebDriver implements WebDriverProvider {
             }
         }
 
-        private ChromeOptions getChromeOptions() {
-            ChromeOptions chromeOptions =
-                    new ChromeOptions()
-                            .addArguments("--no-sandbox")
-                            .addArguments("--disable-notifications")
-                            .addArguments("--disable-infobars");
-            return chromeOptions;
-        }
-
         private FirefoxOptions getFirefoxOptions() {
             FirefoxOptions firefoxOptions = new FirefoxOptions().setAcceptInsecureCerts(true);
             return firefoxOptions;
         }
+
+    private WebDriver getLocalChromeDriver(DesiredCapabilities capabilities) {
+        return new ChromeDriver(capabilities);
     }
+
+    private WebDriver getRemoteWebDriver(DesiredCapabilities capabilities) {
+        RemoteWebDriver remoteWebDriver = new RemoteWebDriver(getRemoteWebdriverUrl(), capabilities);
+        remoteWebDriver.setFileDetector(new LocalFileDetector());
+        return remoteWebDriver;
+    }
+
+    private URL getRemoteWebdriverUrl() {
+        try {
+            return new URL(remoteDriverUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+
+
 
 
 }
+
+
+ */
+
+
