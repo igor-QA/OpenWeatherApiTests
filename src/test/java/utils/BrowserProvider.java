@@ -1,4 +1,3 @@
-/*
 package utils;
 
 import com.codeborne.selenide.Configuration;
@@ -15,7 +14,7 @@ public class BrowserProvider {
     /**
      * Метод настройки типа браузера и базового url
      */
-/*
+
     public void browserSetUp() {
         Configuration.browser = WebDriverProvider.class.getName();
         Configuration.baseUrl = webDriverConfig.baseURL();
@@ -28,4 +27,3 @@ public class BrowserProvider {
 
 
 
- */

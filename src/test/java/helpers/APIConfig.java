@@ -1,4 +1,3 @@
-/*
 package helpers;
 
 import org.aeonbits.owner.Config;
@@ -12,9 +11,10 @@ import org.aeonbits.owner.Config;
         @DefaultValue("${token}")
         @Key("token")
         String token();
+
+        @Key("baseUriWeather")
+        String baseUriWeather();
     }
 
 
 
-
- */

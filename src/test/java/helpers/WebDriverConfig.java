@@ -1,4 +1,3 @@
-/*
 package helpers;
 
 import org.aeonbits.owner.Config;
@@ -18,9 +17,8 @@ public interface WebDriverConfig extends Config {
     String baseUrl();
 
     @Key("webDriver.remote.url")
-    String webDriverRemoteURL();
+    String remote();
 }
 
 
 
- */

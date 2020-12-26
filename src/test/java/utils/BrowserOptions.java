@@ -1,4 +1,3 @@
-/*
 package utils;
 
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -43,4 +42,3 @@ public class BrowserOptions {
 
 
 
- */

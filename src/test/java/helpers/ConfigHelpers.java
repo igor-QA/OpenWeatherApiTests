@@ -1,4 +1,3 @@
-/*
 package helpers;
 
 import org.aeonbits.owner.ConfigFactory;
@@ -16,6 +15,12 @@ public class ConfigHelpers {
     public static String getRemote() {
         return driver().remote();
     }
+    public static String getBaseUri() {
+        return api().baseUriWeather();
+    }
+    public static String getBrowserName() {
+        return driver().browserName();
+    }
 
 
     public static UserConfig user() {
@@ -30,4 +35,3 @@ public class ConfigHelpers {
     }
 }
 
- */

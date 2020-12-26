@@ -1,4 +1,3 @@
-/*
 import com.codeborne.selenide.Configuration;
 import helpers.ConfigHelpers;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,9 +8,9 @@ import static com.codeborne.selenide.Selectors.byValue;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.*;
 
-
 public class WeatherTests {
     //final WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class);
+
     @BeforeAll
     static void setup() {
         Configuration.browser = ConfigHelpers.getRemote();
@@ -35,7 +34,7 @@ public class WeatherTests {
 }
 
 
- */
+
 
 
 

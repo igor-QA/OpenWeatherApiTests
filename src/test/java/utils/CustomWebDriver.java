@@ -1,7 +1,7 @@
-/*
 package utils;
 
 import com.codeborne.selenide.WebDriverProvider;
+import helpers.ConfigHelpers;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,7 +27,7 @@ public class CustomWebDriver implements WebDriverProvider {
         public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
             desiredCapabilities.setVersion(config.browserVersion());
 
-            switch (config.browserName()) {
+            switch (ConfigHelpers.getBrowserName()) {
                 case CHROME:
                     WebDriverManager.chromedriver().setup();
                     return new ChromeDriver(getChromeOptions().merge(desiredCapabilities));
@@ -35,7 +35,7 @@ public class CustomWebDriver implements WebDriverProvider {
                     WebDriverManager.firefoxdriver().setup();
                     return new FirefoxDriver(getFirefoxOptions().merge(desiredCapabilities));
                 default:
-                    throw new RuntimeException("Unknown browser: " + config.browserName());
+                    throw new RuntimeException("Unknown browser: " + ConfigHelpers.getBrowserName());
             }
         }
 
@@ -44,7 +44,7 @@ public class CustomWebDriver implements WebDriverProvider {
             return firefoxOptions;
         }
 
-    private WebDriver getLocalChromeDriver(DesiredCapabilities capabilities) {
+        private WebDriver getLocalChromeDriver(DesiredCapabilities capabilities) {
         return new ChromeDriver(capabilities);
     }
 
@@ -62,14 +62,33 @@ public class CustomWebDriver implements WebDriverProvider {
         }
         return null;
     }
+
+
+    public WebDriver getChromeRemote() {
+
+    }
+
+    public WebDriver getFirefoxRemote() {
+    }
+
+    public WebDriver getOperaRemote() {
+    }
+
+    public WebDriver getChromeDriver() {
+    }
+
+    public WebDriver getFirefoxDriver() {
+    }
+
+    public WebDriver getOperaDriver() {
+    }
 }
 
 
 
 
-}
 
 
- */
+
 
 
