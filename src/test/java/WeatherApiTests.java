@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 
 public class WeatherApiTests {
 
-    private static final APIConfig apiConfig = ConfigFactory.create(APIConfig.class);
+    //private static final APIConfig apiConfig = ConfigFactory.create(APIConfig.class);
 
     private final String TOKEN = ConfigHelpers.getToken();
     private final String baseUriWeather = ConfigHelpers.getBaseUri();
@@ -48,7 +48,7 @@ public class WeatherApiTests {
 
         .then()
                 .log().body()
-                .body("weather.id.find()", is(equalTo(800)));
+                .body("weather.id.find()", is(equalTo(801)));
     }
         // @formatter:on
 }

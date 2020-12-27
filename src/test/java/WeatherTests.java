@@ -2,9 +2,11 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.ConfigHelpers;
 import helpers.WebDriverConfig;
+import io.qameta.allure.Owner;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.WebDriverProvider;
 
@@ -29,7 +31,8 @@ public class WeatherTests {
                 .screenshots(true));
 
     }
-
+    @Tag("web")
+    @Owner("Pavlov Igor")
     @Test
     public void SignInAccount() {
 

@@ -4,7 +4,9 @@ import org.aeonbits.owner.Config;
 import java.net.URL;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
-@Config.Sources({"system:properties", "classpath:remote.properties"})
+@Config.Sources({"system:properties",
+                 "classpath:remote.properties",
+                 "local.properties"})
 public interface WebDriverConfig extends Config {
 
     @Key("webdriver.base.url")
