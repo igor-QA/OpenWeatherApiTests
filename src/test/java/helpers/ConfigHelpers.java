@@ -10,28 +10,21 @@ public class ConfigHelpers {
         return user().userPwd();
     }
     public static String getToken() {
-        return api().token();
-    }
-    public static String getRemote() {
-        return driver().remote();
+        return apiConfig().token();
     }
     public static String getBaseUri() {
-        return api().baseUriWeather();
+        return apiConfig().baseUriWeather();
     }
-    public static String getBrowserName() {
-        return driver().browserName();
-    }
-
 
     public static UserConfig user() {
         return ConfigFactory.newInstance().create(UserConfig.class);
     }
-    public static APIConfig api() {
-        return ConfigFactory.newInstance().create(APIConfig.class);
-    }
-    public static WebDriverConfig driver() {
-                return ConfigFactory.newInstance().create(WebDriverConfig.class);
 
+    public static APIConfig apiConfig() {
+        return ConfigFactory.newInstance().create(APIConfig.class);
     }
 }
 
+
+
+// if (System.getProperty("environment") == null) System.setProperty("environment", "local");

@@ -6,7 +6,7 @@ import org.openqa.selenium.opera.OperaOptions;
 
 public class BrowserOptions {
 
-    public static ChromeOptions getChromeOptions() {
+    protected static ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
 
         chromeOptions.addArguments("--no-sandbox");
@@ -17,7 +17,7 @@ public class BrowserOptions {
         return chromeOptions;
     }
 
-    public static FirefoxOptions getFirefoxOptions() {
+    protected static FirefoxOptions getFirefoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
         firefoxOptions.addArguments("--no-sandbox");
@@ -28,7 +28,7 @@ public class BrowserOptions {
         return firefoxOptions;
     }
 
-    public static OperaOptions getOperaOptions() {
+    protected static OperaOptions getOperaOptions() {
         OperaOptions operaOptions = new OperaOptions();
 
         operaOptions.addArguments("--no-sandbox");
@@ -39,6 +39,3 @@ public class BrowserOptions {
         return operaOptions;
     }
 }
-
-
-

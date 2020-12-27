@@ -1,7 +1,9 @@
 import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.APIConfig;
 import helpers.ConfigHelpers;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,10 +15,13 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class WeatherApiTests {
-    final String TOKEN = ConfigHelpers.getToken();
-    final String baseUriWeather = ConfigHelpers.getBaseUri();
-    final String LAT = "33.441792";
-    final String LON = "-94.037689";
+
+    private static final APIConfig apiConfig = ConfigFactory.create(APIConfig.class);
+
+    private final String TOKEN = ConfigHelpers.getToken();
+    private final String baseUriWeather = ConfigHelpers.getBaseUri();
+    private final String LAT = "33.441792";
+    private final String LON = "-94.037689";
 
     @BeforeEach
     public void initListener() {

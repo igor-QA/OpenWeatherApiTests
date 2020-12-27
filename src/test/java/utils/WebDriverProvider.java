@@ -4,19 +4,16 @@ import helpers.WebDriverConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import javax.annotation.Nonnull;
 
 public class WebDriverProvider implements com.codeborne.selenide.WebDriverProvider {
 
-    private final CustomWebDriver customWebDriver = new CustomWebDriver();
-    private final WebDriverConfig webDriverConfig = ConfigFactory.newInstance().create(WebDriverConfig.class);
+    final CustomWebDriver customWebDriver = new CustomWebDriver();
+    final WebDriverConfig webDriverConfig = ConfigFactory.newInstance().create(WebDriverConfig.class);
 
     /**
      * Метод инициализации вебдрайвера
      */
-
-
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull DesiredCapabilities desiredCapabilities) {
@@ -42,5 +39,4 @@ public class WebDriverProvider implements com.codeborne.selenide.WebDriverProvid
         throw new RuntimeException("Unknown browser: " + webDriverConfig.browserName());
     }
 }
-
 

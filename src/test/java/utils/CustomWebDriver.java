@@ -1,94 +1,76 @@
 package utils;
 
-import com.codeborne.selenide.WebDriverProvider;
-import helpers.ConfigHelpers;
+import helpers.WebDriverConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import javax.annotation.Nonnull;
-import java.net.MalformedURLException;
-import java.net.URL;
+import static com.codeborne.selenide.Browsers.*;
+import static utils.BrowserOptions.*;
 
-import static org.openqa.selenium.remote.BrowserType.CHROME;
-import static org.openqa.selenium.remote.BrowserType.FIREFOX;
+public class CustomWebDriver {
+
+    final WebDriverConfig webDriverConfig = ConfigFactory.newInstance().create(WebDriverConfig.class);
 
 
-public class CustomWebDriver implements WebDriverProvider {
+    public RemoteWebDriver getChromeRemote() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(CHROME);
+        capabilities.setVersion(webDriverConfig.browserVersion());
+        capabilities.setCapability(ChromeOptions.CAPABILITY, getChromeOptions());
 
-        @Nonnull
-        @Override
-        public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
-            desiredCapabilities.setVersion(config.browserVersion());
-
-            switch (ConfigHelpers.getBrowserName()) {
-                case CHROME:
-                    WebDriverManager.chromedriver().setup();
-                    return new ChromeDriver(getChromeOptions().merge(desiredCapabilities));
-                case FIREFOX:
-                    WebDriverManager.firefoxdriver().setup();
-                    return new FirefoxDriver(getFirefoxOptions().merge(desiredCapabilities));
-                default:
-                    throw new RuntimeException("Unknown browser: " + ConfigHelpers.getBrowserName());
-            }
-        }
-
-        private FirefoxOptions getFirefoxOptions() {
-            FirefoxOptions firefoxOptions = new FirefoxOptions().setAcceptInsecureCerts(true);
-            return firefoxOptions;
-        }
-
-        private WebDriver getLocalChromeDriver(DesiredCapabilities capabilities) {
-        return new ChromeDriver(capabilities);
+        return new RemoteWebDriver(webDriverConfig.remoteURL(), capabilities);
     }
 
-    private WebDriver getRemoteWebDriver(DesiredCapabilities capabilities) {
-        RemoteWebDriver remoteWebDriver = new RemoteWebDriver(getRemoteWebdriverUrl(), capabilities);
-        remoteWebDriver.setFileDetector(new LocalFileDetector());
-        return remoteWebDriver;
+    protected RemoteWebDriver getFirefoxRemote() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(FIREFOX);
+        capabilities.setVersion(webDriverConfig.browserVersion());
+        capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, getFirefoxOptions());
+
+        return new RemoteWebDriver(webDriverConfig.remoteURL(), capabilities);
     }
 
-    private URL getRemoteWebdriverUrl() {
-        try {
-            return new URL(remoteDriverUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    protected RemoteWebDriver getOperaRemote() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(OPERA);
+        capabilities.setVersion(webDriverConfig.browserVersion());
+        capabilities.setCapability(OperaOptions.CAPABILITY, getOperaOptions());
+
+        return new RemoteWebDriver(webDriverConfig.remoteURL(), capabilities);
     }
 
-
-    public WebDriver getChromeRemote() {
-
+    protected WebDriver getChromeDriver() {
+        WebDriverManager.chromedriver().driverVersion(webDriverConfig.browserVersion()).setup();
+        return new ChromeDriver();
     }
 
-    public WebDriver getFirefoxRemote() {
+    protected WebDriver getFirefoxDriver() {
+        WebDriverManager.firefoxdriver().driverVersion(webDriverConfig.browserVersion()).setup();
+        return new FirefoxDriver();
     }
 
-    public WebDriver getOperaRemote() {
-    }
-
-    public WebDriver getChromeDriver() {
-    }
-
-    public WebDriver getFirefoxDriver() {
-    }
-
-    public WebDriver getOperaDriver() {
+    protected WebDriver getOperaDriver() {
+        WebDriverManager.operadriver().driverVersion(webDriverConfig.browserVersion()).setup();
+        return new OperaDriver();
     }
 }
 
 
+/*
+ //WebDriverManager.chromedriver().setup();
+         return new ChromeDriver(getChromeOptions().merge(desiredCapabilities));
+         case FIREFOX:
+         WebDriverManager.firefoxdriver().setup();
+         return new FirefoxDriver(getFirefoxOptions().merge(desiredCapabilities));
 
 
-
-
-
-
-
+ */

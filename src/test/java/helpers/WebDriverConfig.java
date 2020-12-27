@@ -1,24 +1,31 @@
 package helpers;
 
 import org.aeonbits.owner.Config;
+import java.net.URL;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
-@Config.Sources({"classpath:${environment}.properties",
-                "local.properties"})
-
+@Config.Sources({"system:properties", "classpath:remote.properties"})
 public interface WebDriverConfig extends Config {
-    @Key("browser.version")
-    String browserVersion();
 
-    @Key("browserName")
+    @Key("webdriver.base.url")
+    String baseURL();
+
+    //DefaultValue("CHROME")
+    @Key("webdriver.browser.name")
     String browserName();
 
-    @Key("baseUrl")
-    String baseUrl();
+    @Key("webdriver.browser.version")
+    String browserVersion();
 
-    @Key("webDriver.remote.url")
-    String remote();
+    @Key("webdriver.remote")
+    boolean remote();
+
+    @Key("webdriver.remote.url")
+    URL remoteURL();
+
 }
+
+
 
 
 
