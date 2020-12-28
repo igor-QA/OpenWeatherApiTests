@@ -31,7 +31,6 @@ public class WeatherTests {
                 .screenshots(true));
 
     }
-    @Tag("web")
     @Owner("Pavlov Igor")
     @Test
     public void SignInAccount() {
