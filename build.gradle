@@ -38,16 +38,11 @@ dependencies {
 }
 tasks.withType(Test) {
     systemProperties = System.properties as Map<String, ?>
-    testLogging {
-        lifecycle {
-            events "started", "skipped", "failed", "standard_error", "standard_out"
-            exceptionFormat "short"
-        }
 
-        test {
-            //systemProperty "chromeoptions.args","--disable-notifications" //увидомления выкл
-            useJUnitPlatform()
-        }
-    }
 }
+test {
+    //systemProperty "chromeoptions.args","--disable-notifications" //увидомления выкл
+    useJUnitPlatform()
+}
+
 

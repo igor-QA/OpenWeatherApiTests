@@ -25,6 +25,4 @@ public class ConfigHelpers {
     }
 }
 
-
-
 // if (System.getProperty("environment") == null) System.setProperty("environment", "local");
