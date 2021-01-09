@@ -39,4 +39,3 @@ public class WebDriverProvider implements com.codeborne.selenide.WebDriverProvid
         throw new RuntimeException("Unknown browser: " + webDriverConfig.browserName());
     }
 }
-

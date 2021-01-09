@@ -23,5 +23,4 @@ public class ConfigHelpers {
     public static APIConfig apiConfig() { return ConfigFactory.newInstance().create(APIConfig.class);
     }
 }
-
 // if (System.getProperty("environment") == null) System.setProperty("environment", "local");

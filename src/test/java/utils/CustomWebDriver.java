@@ -63,8 +63,6 @@ public class CustomWebDriver {
         return new OperaDriver();
     }
 }
-
-
 /*
  //WebDriverManager.chromedriver().setup();
          return new ChromeDriver(getChromeOptions().merge(desiredCapabilities));

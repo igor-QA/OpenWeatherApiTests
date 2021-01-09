@@ -25,8 +25,3 @@ public interface WebDriverConfig extends Config {
     URL remoteURL();
 
 }
-
-
-
-
-
