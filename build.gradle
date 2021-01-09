@@ -6,15 +6,20 @@ plugins {
 repositories {
     mavenCentral()
 }
+ext {
+    allureVersion = "2.13.7"
+    selenideVersion = "5.17.0"
+    junitVersion = "5.7.0"
+}
 
 allure {
     autoconfigure = true // плагин все автоматически сконфигурирует
     aspectjweaver = true
-    version = '2.13.6'
-
-    useJUnit5(){
-        version = '2.13.6'
+    version = "${allureVersion}"
+    useJUnit5 {
+        version = "${allureVersion}"
     }
+
 }
 compileTestJava {
     options.encoding = 'UTF-8'
@@ -24,25 +29,32 @@ dependencies {
     compile("io.qameta.allure:allure-java-commons:2.13.5")
     compile("io.qameta.allure:allure-rest-assured:2.13.5")
     compile("io.rest-assured:rest-assured:4.3.2")
-    compile("io.qameta.allure:allure-selenide:2.13.6")
     testImplementation "org.aspectj:aspectjweaver:1.9.5"
-
+    testImplementation "com.codeborne:selenide:${selenideVersion}"
+    testImplementation "io.qameta.allure:allure-selenide:${allureVersion}"
     compile'org.aeonbits.owner:owner:1.0.12'
     compile("io.rest-assured:rest-assured:4.3.1")
     compile("com.fasterxml.jackson.core:jackson-databind:2.11.2")
-
-    compile("com.codeborne:selenide:5.13.1")
-    compile("org.junit.jupiter:junit-jupiter-api:5.7.0")
-    compile("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-    compile("org.junit.jupiter:junit-jupiter-params:5.7.0")
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
+
 tasks.withType(Test) {
-    systemProperties = System.properties as Map<String, ?>
+    systemProperties = System.properties
+    if (project.hasProperty("web.threads")) {
+        systemProperties += [
+                'junit.jupiter.execution.parallel.enabled'                 : true,
+                'junit.jupiter.execution.parallel.mode.default'            : 'concurrent',
+                'junit.jupiter.execution.parallel.mode.classes.default'    : 'concurrent',
+                'junit.jupiter.execution.parallel.config.strategy'         : 'fixed',
+                'junit.jupiter.execution.parallel.config.fixed.parallelism': project.getProperty("web.threads").toInteger()
+        ]
+    }
+        systemProperty 'remote.properties', 'user.properties'
 
+    test {
+        //systemProperty "chromeoptions.args","--disable-notifications" //увидомления выкл
+        useJUnitPlatform()
+    }
 }
-test {
-    //systemProperty "chromeoptions.args","--disable-notifications" //увидомления выкл
-    useJUnitPlatform()
-}
-
-

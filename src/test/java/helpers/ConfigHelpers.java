@@ -20,8 +20,7 @@ public class ConfigHelpers {
         return ConfigFactory.newInstance().create(UserConfig.class);
     }
 
-    public static APIConfig apiConfig() {
-        return ConfigFactory.newInstance().create(APIConfig.class);
+    public static APIConfig apiConfig() { return ConfigFactory.newInstance().create(APIConfig.class);
     }
 }
 

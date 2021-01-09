@@ -14,9 +14,11 @@ import static org.hamcrest.Matchers.is;
 
 public class WeatherApiTests {
 
-    //private static final APIConfig apiConfig = ConfigFactory.create(APIConfig.class);
-    private final String TOKEN = ConfigHelpers.getToken();
-    private final String baseUriWeather = ConfigHelpers.getBaseUri();
+    //static final APIConfig apiConfig = ConfigFactory.create(APIConfig.class);
+    final String TOKEN = ConfigHelpers.getToken();
+    final String baseUriWeather = ConfigHelpers.getBaseUri();
+    final String LAT = "33.441792";
+    final String LON = "-94.037689";
 
     @BeforeEach
     public void initListener() {
@@ -29,9 +31,7 @@ public class WeatherApiTests {
     void requestWeatherId() {
         // @formatter:off
         Map<String, String> params = new HashMap<>();
-        String LAT = "33.441792";
         params.put("lat", LAT);
-        String LON = "-94.037689";
         params.put("lon", LON);
         params.put("appid", TOKEN);
 
@@ -45,7 +45,7 @@ public class WeatherApiTests {
 
         .then()
                 .log().body()
-                .body("weather.id.find()", is(equalTo(801)));
+                .body("weather.id.find()", is(equalTo(800)));
     }
         // @formatter:on
 }
