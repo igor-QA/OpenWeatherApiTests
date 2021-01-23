@@ -13,5 +13,3 @@ public interface UserConfig extends Config {
     @Key("Pwd")
     String userPwd();
 }
-
-

@@ -14,7 +14,4 @@ import org.aeonbits.owner.Config;
 
         @Key("baseUriWeather")
         String baseUriWeather();
-    }
-
-
-
+}

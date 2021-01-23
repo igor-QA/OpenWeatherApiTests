@@ -20,7 +20,6 @@ public class CustomWebDriver {
 
     final WebDriverConfig webDriverConfig = ConfigFactory.newInstance().create(WebDriverConfig.class);
 
-
     public RemoteWebDriver getChromeRemote() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(CHROME);
@@ -64,11 +63,9 @@ public class CustomWebDriver {
     }
 }
 /*
- //WebDriverManager.chromedriver().setup();
+         WebDriverManager.chromedriver().setup();
          return new ChromeDriver(getChromeOptions().merge(desiredCapabilities));
          case FIREFOX:
          WebDriverManager.firefoxdriver().setup();
          return new FirefoxDriver(getFirefoxOptions().merge(desiredCapabilities));
-
-
  */

@@ -11,9 +11,7 @@ public class WebDriverProvider implements com.codeborne.selenide.WebDriverProvid
     final CustomWebDriver customWebDriver = new CustomWebDriver();
     final WebDriverConfig webDriverConfig = ConfigFactory.newInstance().create(WebDriverConfig.class);
 
-    /**
-     * Метод инициализации вебдрайвера
-     */
+    //Метод инициализации вебдрайвера
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull DesiredCapabilities desiredCapabilities) {

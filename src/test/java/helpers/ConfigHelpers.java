@@ -6,12 +6,15 @@ public class ConfigHelpers {
     public static String getLogin() {
         return user().userLogin();
     }
+
     public static String getPassword() {
         return user().userPwd();
     }
+
     public static String getToken() {
         return apiConfig().token();
     }
+
     public static String getBaseUri() {
         return apiConfig().baseUriWeather();
     }
@@ -20,7 +23,8 @@ public class ConfigHelpers {
         return ConfigFactory.newInstance().create(UserConfig.class);
     }
 
-    public static APIConfig apiConfig() { return ConfigFactory.newInstance().create(APIConfig.class);
+    public static APIConfig apiConfig() {
+        return ConfigFactory.newInstance().create(APIConfig.class);
     }
 }
 // if (System.getProperty("environment") == null) System.setProperty("environment", "local");

@@ -28,8 +28,8 @@ public class WeatherTests {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .savePageSource(true)
                 .screenshots(true));
-
     }
+
     @Owner("Pavlov Igor")
     @Test
     public void SignInAccount() {
@@ -43,5 +43,3 @@ public class WeatherTests {
 
     }
 }
-
-
